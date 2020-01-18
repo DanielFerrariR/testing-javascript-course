@@ -10,4 +10,4 @@ All projects from testing javascript course
 
 ## Course link
 
-https://testingjavascript.com/l
+https://testingjavascript.com/
