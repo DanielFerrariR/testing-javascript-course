@@ -1,7 +1,7 @@
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
-import {reportError as mockReportError} from '../api'
-import {ErrorBoundary} from '../error-boundary'
+import { render, fireEvent } from '@testing-library/react'
+import { reportError as mockReportError } from '../api'
+import { ErrorBoundary } from '../error-boundary'
 
 jest.mock('../api')
 
@@ -17,7 +17,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-function Bomb({shouldThrow}) {
+function Bomb({ shouldThrow }) {
   if (shouldThrow) {
     throw new Error('💣')
   } else {
@@ -26,28 +26,28 @@ function Bomb({shouldThrow}) {
 }
 
 test('calls reportError and renders that there was a problem', () => {
-  mockReportError.mockResolvedValueOnce({success: true})
-  const {rerender, getByText, queryByText, getByRole, queryByRole} = render(
+  mockReportError.mockResolvedValueOnce({ success: true })
+  const { getByText, rerender, getByRole, queryByRole, queryByText } = render(
     <ErrorBoundary>
       <Bomb />
-    </ErrorBoundary>,
+    </ErrorBoundary>
   )
 
   rerender(
     <ErrorBoundary>
       <Bomb shouldThrow={true} />
-    </ErrorBoundary>,
+    </ErrorBoundary>
   )
 
   const error = expect.any(Error)
-  const info = {componentStack: expect.stringContaining('Bomb')}
+  const info = { componentStack: expect.stringContaining('Bomb') }
   expect(mockReportError).toHaveBeenCalledWith(error, info)
   expect(mockReportError).toHaveBeenCalledTimes(1)
 
   expect(console.error).toHaveBeenCalledTimes(2)
 
   expect(getByRole('alert').textContent).toMatchInlineSnapshot(
-    `"There was a problem."`,
+    `"There was a problem."`
   )
 
   console.error.mockClear()
@@ -56,7 +56,7 @@ test('calls reportError and renders that there was a problem', () => {
   rerender(
     <ErrorBoundary>
       <Bomb />
-    </ErrorBoundary>,
+    </ErrorBoundary>
   )
 
   fireEvent.click(getByText(/try again/i))

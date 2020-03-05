@@ -24,4 +24,4 @@ function Editor() {
   )
 }
 
-export {Editor}
+export { Editor }
