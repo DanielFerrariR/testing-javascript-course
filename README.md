@@ -10,10 +10,11 @@ All projects from testing javascript course
 - Section 04 - Configure Jest for Testing JavaScript Applications
 - Section 05 - Test React Components with Jest and React Testing Library
 - Section 06 - Install, Configure, and Script Cypress for JavaScript Web Applications
+- Section 07 - Test Node.js Backends
 
 ## Used technologies
 
-- React, Jest, Cypress, Travis, Eslint, Prettier
+- React, Node, Jest, Cypress, Travis, Eslint, Prettier
 
 ## Course link
 
